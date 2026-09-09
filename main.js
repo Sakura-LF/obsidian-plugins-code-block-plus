@@ -12,6 +12,7 @@ const DEFAULT_SETTINGS = {
   customRadius: false,
   customPadding: false,
   showHeaderSeparator: false,
+  showMacTrafficLights: false,
   codeBlockPreset: "none",
   codeBlockRadius: 10,
   codeBlockPaddingLeft: 20,
@@ -45,7 +46,10 @@ const i18n = {
       codeBlockPreset: "代码块风格预设",
       codeBlockPresetDesc: "选择预设风格（会覆盖部分自定义外观设置）",
       presetNone: "默认",
-      presetMac: "Mac 红绿灯（夜间）",
+      presetMac: "Mac（夜间）",
+      presetOneDarkPro: "One Dark Pro（暗色）",
+      showMacTrafficLights: "显示 Mac 红黄绿圆点",
+      showMacTrafficLightsDesc: "在代码块左上角显示装饰圆点，可搭配任意风格预设",
       presetZhihu: "知乎（日间）",
       presetGithub: "GitHub（夜间）",
       presetVscode: "VS Code 暗色（夜间）",
@@ -116,7 +120,10 @@ const i18n = {
       codeBlockPreset: "Code block style preset",
       codeBlockPresetDesc: "Choose a preset style (overrides some custom appearance settings)",
       presetNone: "Default",
-      presetMac: "Mac Traffic Lights (Dark)",
+      presetMac: "Mac (Dark)",
+      presetOneDarkPro: "One Dark Pro (Dark)",
+      showMacTrafficLights: "Show Mac traffic lights",
+      showMacTrafficLightsDesc: "Show decorative dots at the top left of code blocks with any style preset",
       presetZhihu: "Zhihu (Light)",
       presetGithub: "GitHub (Dark)",
       presetVscode: "VS Code Dark (Dark)",
@@ -507,6 +514,7 @@ class SiyuanSettingTab extends PluginSettingTab {
           .addOptions({
             none: t.settings.presetNone,
             mac: t.settings.presetMac,
+            "one-dark-pro": t.settings.presetOneDarkPro,
             zhihu: t.settings.presetZhihu,
             github: t.settings.presetGithub,
             vscode: t.settings.presetVscode,
@@ -517,6 +525,19 @@ class SiyuanSettingTab extends PluginSettingTab {
           .setValue(this.plugin.settings.codeBlockPreset)
           .onChange(async (value) => {
             this.plugin.settings.codeBlockPreset = value;
+            this.plugin.applySettings();
+            await this.plugin.saveSettings();
+          })
+      );
+
+    new Setting(containerEl)
+      .setName(t.settings.showMacTrafficLights)
+      .setDesc(t.settings.showMacTrafficLightsDesc)
+      .addToggle((toggle) =>
+        toggle
+          .setValue(this.plugin.settings.showMacTrafficLights)
+          .onChange(async (value) => {
+            this.plugin.settings.showMacTrafficLights = value;
             this.plugin.applySettings();
             await this.plugin.saveSettings();
           })
@@ -1078,6 +1099,8 @@ module.exports = class SiyuanCodeBlocks extends Plugin {
     document.body.classList.remove("siyuan-code-custom-radius");
     document.body.classList.remove("siyuan-code-custom-padding");
     document.body.classList.remove("siyuan-code-show-header-separator");
+    document.body.classList.remove("siyuan-code-mac-traffic-lights");
+    document.body.classList.remove("siyuan-code-preset-one-dark-pro");
     document.body.classList.remove("siyuan-code-preset-mac");
     document.body.classList.remove("siyuan-code-preset-zhihu");
     document.body.classList.remove("siyuan-code-preset-github");
@@ -1091,7 +1114,12 @@ module.exports = class SiyuanCodeBlocks extends Plugin {
   }
 
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    const saved = await this.loadData();
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, saved);
+    // Preserve the dots for existing Mac-preset users when upgrading.
+    if (saved && typeof saved.showMacTrafficLights !== "boolean") {
+      this.settings.showMacTrafficLights = saved.codeBlockPreset === "mac";
+    }
   }
 
   async saveSettings() {
@@ -1155,6 +1183,14 @@ module.exports = class SiyuanCodeBlocks extends Plugin {
     document.body.classList.toggle(
       "siyuan-code-preset-custom",
       this.settings.codeBlockPreset === "custom"
+    );
+    document.body.classList.toggle(
+      "siyuan-code-preset-one-dark-pro",
+      this.settings.codeBlockPreset === "one-dark-pro"
+    );
+    document.body.classList.toggle(
+      "siyuan-code-mac-traffic-lights",
+      this.settings.showMacTrafficLights
     );
     // Always show copy button on mobile (no cursor hover)
     const mobile = isMobilePlatform();

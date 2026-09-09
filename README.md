@@ -12,6 +12,9 @@ Adds a sleek header bar to every code block with a language pill (click to pick 
 
 ### Features
 
+- **One Dark Pro** — Dark code block surfaces and syntax colors in editing and reading modes.
+- **Mac traffic lights** — Optional decorative red/yellow/green dots at the top left, independent of the selected preset.
+
 - **Language pill** — Click the language label to open a searchable picker with 40+ preset languages. Type a custom language and it's auto-saved for next time.
 - **Hover copy button** — Click to copy code content. Controls appear on hover and hide when the cursor leaves (toggleable in settings).
 - **Smart Ctrl/Cmd+A** — First press selects the current code block body; second press selects all.
@@ -27,19 +30,21 @@ Adds a sleek header bar to every code block with a language pill (click to pick 
 
 #### From GitHub (manual)
 
-1. Download `main.js`, `styles.css`, and `manifest.json` from the [latest release](https://github.com/perinchiang/obsidian-smart-code-blocks/releases).
+1. Download `main.js`, `styles.css`, and `manifest.json` from the [latest release](https://github.com/Sakura-LF/obsidian-plugins-code-block-plus/releases/latest).
 2. Create a folder named `siyuan-code-blocks` inside your vault's `.obsidian/plugins/` directory.
 3. Copy the three files into that folder.
 4. Enable the plugin in Obsidian → Settings → Community plugins.
 
-#### From Obsidian Community Plugins
+#### Updating this fork
 
-Search for "Code Block Plus" in Obsidian's community plugin browser.
+Replace only the three release files, keep `data.json` (your settings), then reload Obsidian. This fork keeps the original plugin ID and replaces the original installation.
 
 ### Settings
 
 | Setting | Description | Default |
 |---------|-------------|---------|
+| Code block style preset | Includes One Dark Pro (Dark) | Default |
+| Show Mac traffic lights | Decorative dots, independent of the preset | Off* |
 | Custom appearance | Enable to customize background, radius, and padding | Off |
 | Code block radius (px) | Border radius of code blocks (custom only) | 10 |
 | Left padding (px) | Distance between code text and left border (custom only) | 20 |
@@ -47,6 +52,8 @@ Search for "Code Block Plus" in Obsidian's community plugin browser.
 | Chinese punctuation trigger | `···` + Enter creates a code block | On |
 | Allow custom languages | Type custom languages in the picker | On |
 | Interface language | Plugin UI language (zh/en) | zh |
+
+*Upgrading existing Mac-preset settings keeps the dots enabled. Explicit toggle choices are preserved.
 
 ### Compatibility
 
@@ -63,6 +70,9 @@ Search for "Code Block Plus" in Obsidian's community plugin browser.
 
 ### 功能特性
 
+- **One Dark Pro 暗色主题** — 编辑和阅读模式均提供暗色背景与语法高亮配色。
+- **Mac 红黄绿圆点** — 左上角装饰圆点可独立开关，与任意风格预设搭配。
+
 - **语言标签** — 点击语言标签打开可搜索的选择器，内置 40+ 预设语言。输入自定义语言会自动保存，下次可直接选用。
 - **悬停复制按钮** — 点击复制代码内容。控件悬停时显示，移开后隐藏（可在设置中关闭）。
 - **智能 Ctrl/Cmd+A** — 第一次按下选中当前代码块内容，第二次按下全选。
@@ -78,19 +88,23 @@ Search for "Code Block Plus" in Obsidian's community plugin browser.
 
 #### 从 GitHub 手动安装
 
-1. 从 [最新发布](https://github.com/perinchiang/obsidian-smart-code-blocks/releases) 下载 `main.js`、`styles.css` 和 `manifest.json`。
+1. 从 [最新发布](https://github.com/Sakura-LF/obsidian-plugins-code-block-plus/releases/latest) 下载 `main.js`、`styles.css` 和 `manifest.json`。
 2. 在你的仓库 `.obsidian/plugins/` 目录下创建 `siyuan-code-blocks` 文件夹。
 3. 将三个文件复制到该文件夹中。
 4. 在 Obsidian → 设置 → 第三方插件 中启用本插件。
 
-#### 从 Obsidian 社区插件市场安装（即将上架）
+#### 更新此 fork
 
-在 Obsidian 社区插件浏览器中搜索 "Code Block Plus"。
+仅覆盖发布页的三个文件，保留 `data.json`（个人配置），然后重启 Obsidian。此 fork 保留原插件 ID，会替换原版安装，不能与原版同时启用。
+
+启用后，在插件设置中将「代码块风格预设」设为「One Dark Pro（暗色）」，按需开启「显示 Mac 红黄绿圆点」。
 
 ### 设置项
 
 | 设置 | 说明 | 默认值 |
 |------|------|--------|
+| 代码块风格预设 | 新增 One Dark Pro（暗色） | 默认 |
+| 显示 Mac 红黄绿圆点 | 装饰圆点，可搭配任意预设 | 关闭* |
 | 自定义外观 | 开启后可自定义背景色、圆角和内边距 | 关闭 |
 | 代码块圆角 (px) | 代码块的圆角大小（自定义外观） | 10 |
 | 左侧内边距 (px) | 代码文字与左边框的距离（自定义外观） | 20 |
@@ -98,6 +112,8 @@ Search for "Code Block Plus" in Obsidian's community plugin browser.
 | 中文标点触发 | `···` + 回车创建代码块 | 开启 |
 | 允许自定义语言 | 在选择器中输入自定义语言 | 开启 |
 | 界面语言 | 插件界面语言（中文/英文） | 中文 |
+
+*升级时，原先使用 Mac 预设的用户会保留圆点；手动选择的开关状态会被保存。
 
 ### 兼容性
 

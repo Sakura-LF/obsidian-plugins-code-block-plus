@@ -323,9 +323,6 @@
 .siyuan-code-preset-mac {
   --siyuan-code-mac-bg: #1e1e2e;
   --siyuan-code-mac-header-bg: #2a2a3c;
-  --siyuan-code-mac-dot-close: #ff5f57;
-  --siyuan-code-mac-dot-minimize: #febc2e;
-  --siyuan-code-mac-dot-maximize: #28c840;
 }
 
 /* --- Mac: Editing view --- */
@@ -336,24 +333,6 @@
   height: 36px;
   padding-left: 16px !important;
   position: relative;
-}
-/* Mac dots via ::before on header */
-.siyuan-code-preset-mac .markdown-source-view.mod-cm6 .siyuan-code-header::before {
-  content: "";
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
-  background: var(--siyuan-code-mac-dot-close);
-  border-radius: 50%;
-  box-shadow:
-    16px 0 0 var(--siyuan-code-mac-dot-minimize),
-    32px 0 0 var(--siyuan-code-mac-dot-maximize);
-}
-.siyuan-code-preset-mac .markdown-source-view.mod-cm6 .siyuan-code-header .siyuan-code-lang {
-  margin-left: 52px;
 }
 .siyuan-code-preset-mac .markdown-source-view.mod-cm6 .HyperMD-codeblock {
   background: var(--siyuan-code-mac-bg) !important;
@@ -390,24 +369,6 @@
   padding-left: 16px !important;
   position: relative;
 }
-.siyuan-code-preset-mac .markdown-rendered pre > .siyuan-code-header-read::before {
-  content: "";
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
-  background: var(--siyuan-code-mac-dot-close);
-  border-radius: 50%;
-  box-shadow:
-    16px 0 0 var(--siyuan-code-mac-dot-minimize),
-    32px 0 0 var(--siyuan-code-mac-dot-maximize);
-}
-.siyuan-code-preset-mac .markdown-rendered pre > .siyuan-code-header-read .siyuan-code-lang {
-  margin-left: 52px;
-}
-
 /* ============================================================
    PRESET: Zhihu — .siyuan-code-preset-zhihu
    Clean, minimal style inspired by Zhihu code blocks.
@@ -768,4 +729,149 @@
   background: var(--siyuan-code-surface) !important;
   border-top: 1px solid var(--background-modifier-border);
   border-radius: 6px 6px 0 0;
+}
+
+/* Independent decorative traffic lights, shared by editing and reading views.
+   A flex item reserves space without overlapping the language or copy controls. */
+.siyuan-code-mac-traffic-lights .siyuan-code-header::before {
+  content: "";
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  margin-right: 32px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 16px 0 0 #febc2e, 32px 0 0 #28c840;
+  pointer-events: none;
+}
+
+/* One Dark Pro: dark surfaces and scoped CodeMirror / Prism syntax colors. */
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre {
+  --code-normal: #abb2bf;
+  --code-comment: #5c6370;
+  --code-function: #61afef;
+  --code-important: #c678dd;
+  --code-keyword: #c678dd;
+  --code-operator: #56b6c2;
+  --code-property: #e06c75;
+  --code-punctuation: #abb2bf;
+  --code-string: #98c379;
+  --code-tag: #e06c75;
+  --code-value: #d19a66;
+  background: #282c34 !important;
+  color: #abb2bf;
+  border: none !important;
+}
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock {
+  padding-left: var(--siyuan-code-padding-left) !important;
+  padding-right: var(--siyuan-code-padding-right) !important;
+  caret-color: #528bff;
+}
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock-end {
+  border-radius: 0 0 var(--siyuan-code-radius) var(--siyuan-code-radius);
+}
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre {
+  border-radius: var(--siyuan-code-radius) !important;
+  padding-top: 36px !important;
+  outline: none !important;
+}
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code {
+  background: transparent !important;
+  color: #abb2bf;
+  text-shadow: none;
+  padding: 10px var(--siyuan-code-padding-right) 14px var(--siyuan-code-padding-left) !important;
+}
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .siyuan-code-header,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > .siyuan-code-header-read {
+  background: #21252b !important;
+  color: #abb2bf;
+  border: none !important;
+  border-radius: var(--siyuan-code-radius) var(--siyuan-code-radius) 0 0;
+  height: 36px;
+}
+.siyuan-code-preset-one-dark-pro .siyuan-code-header .siyuan-code-lang,
+.siyuan-code-preset-one-dark-pro .siyuan-code-header .siyuan-code-copy {
+  color: #abb2bf;
+}
+.siyuan-code-preset-one-dark-pro .siyuan-code-header .siyuan-code-lang:hover,
+.siyuan-code-preset-one-dark-pro .siyuan-code-header .siyuan-code-copy:hover {
+  color: #ffffff;
+  background: #3e4451;
+}
+.siyuan-code-preset-one-dark-pro.siyuan-code-show-header-separator .siyuan-code-header {
+  border-bottom: 1px solid #3e4451 !important;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.comment,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.prolog,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.doctype,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.cdata,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-comment {
+  color: #5c6370;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.punctuation,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-punctuation {
+  color: #abb2bf;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.property,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.tag,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.deleted,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-tag,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-property,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-variable,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-variable-2 {
+  color: #e06c75;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.boolean,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.number,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.constant,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-number,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-atom {
+  color: #d19a66;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.string,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.char,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.attr-value,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.inserted,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-string,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-string-2 {
+  color: #98c379;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.operator,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.entity,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.url,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-operator {
+  color: #56b6c2;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.atrule,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.keyword,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-keyword {
+  color: #c678dd;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.function,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-def {
+  color: #61afef;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.class-name,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.builtin,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.attr-name,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-type,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-builtin,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-variable-3 {
+  color: #e5c07b;
+}
+
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.regex,
+.siyuan-code-preset-one-dark-pro .markdown-rendered pre > code .token.important,
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-meta {
+  color: #c678dd;
 }
