@@ -759,7 +759,7 @@
   --code-string: #98c379;
   --code-tag: #e06c75;
   --code-value: #d19a66;
-  background: #282c34 !important;
+  background: #303640 !important;
   color: #abb2bf;
   border: none !important;
 }
@@ -767,6 +767,8 @@
   padding-left: var(--siyuan-code-padding-left) !important;
   padding-right: var(--siyuan-code-padding-right) !important;
   caret-color: #528bff;
+  /* CodeMirror renders separate lines: draw only the two outside edges. */
+  box-shadow: inset 1px 0 #3e4451, inset -1px 0 #3e4451;
 }
 /* Keep the opening fence hidden while leaving room below the header. */
 .siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock-begin {
@@ -775,11 +777,14 @@
 }
 .siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock-end {
   border-radius: 0 0 var(--siyuan-code-radius) var(--siyuan-code-radius);
+  box-shadow: inset 1px 0 #3e4451, inset -1px 0 #3e4451,
+    inset 0 -1px #3e4451, 0 8px 16px -6px rgba(171, 178, 191, 0.22);
 }
 .siyuan-code-preset-one-dark-pro .markdown-rendered pre {
   border-radius: var(--siyuan-code-radius) !important;
   padding-top: 36px !important;
   outline: none !important;
+  box-shadow: 0 0 0 1px #3e4451, 0 6px 20px rgba(171, 178, 191, 0.18) !important;
 }
 .siyuan-code-preset-one-dark-pro .markdown-rendered pre > code {
   background: transparent !important;
@@ -789,11 +794,15 @@
 }
 .siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .siyuan-code-header,
 .siyuan-code-preset-one-dark-pro .markdown-rendered pre > .siyuan-code-header-read {
-  background: #21252b !important;
+  background: #282c34 !important;
   color: #abb2bf;
   border: none !important;
   border-radius: var(--siyuan-code-radius) var(--siyuan-code-radius) 0 0;
   height: 36px;
+}
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .siyuan-code-header {
+  box-shadow: inset 1px 0 #3e4451, inset -1px 0 #3e4451,
+    inset 0 1px #3e4451, 0 -6px 16px -6px rgba(171, 178, 191, 0.18);
 }
 .siyuan-code-preset-one-dark-pro .siyuan-code-header .siyuan-code-lang,
 .siyuan-code-preset-one-dark-pro .siyuan-code-header .siyuan-code-copy {
