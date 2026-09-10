@@ -768,6 +768,11 @@
   padding-right: var(--siyuan-code-padding-right) !important;
   caret-color: #528bff;
 }
+/* Keep the opening fence hidden while leaving room below the header. */
+.siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock-begin {
+  height: 16px;
+  min-height: 16px;
+}
 .siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .HyperMD-codeblock-end {
   border-radius: 0 0 var(--siyuan-code-radius) var(--siyuan-code-radius);
 }
@@ -780,7 +785,7 @@
   background: transparent !important;
   color: #abb2bf;
   text-shadow: none;
-  padding: 10px var(--siyuan-code-padding-right) 14px var(--siyuan-code-padding-left) !important;
+  padding: 16px var(--siyuan-code-padding-right) 16px var(--siyuan-code-padding-left) !important;
 }
 .siyuan-code-preset-one-dark-pro .markdown-source-view.mod-cm6 .siyuan-code-header,
 .siyuan-code-preset-one-dark-pro .markdown-rendered pre > .siyuan-code-header-read {
